@@ -418,6 +418,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_graph_type</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">oid_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">normalize_data_type_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_oid_type</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">_project_to_simple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v_prop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">e_prop</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">check_argument</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph_type</span> <span class="o">==</span> <span class="n">graph_def_pb2</span><span class="o">.</span><span class="n">ARROW_PROPERTY</span><span class="p">)</span>
         <span class="n">op</span> <span class="o">=</span> <span class="n">dag_utils</span><span class="o">.</span><span class="n">project_to_simple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v_prop</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">e_prop</span><span class="p">))</span>
@@ -916,6 +920,10 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_graph_node</span><span class="o">.</span><span class="n">op</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">oid_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_graph_node</span><span class="o">.</span><span class="n">oid_type</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">template_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># transform str/string to std::string</span>
         <span class="n">oid_type</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">normalize_data_type_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_oid_type</span><span class="p">)</span>
@@ -1302,6 +1310,16 @@
             
               
                 <dd><a href="../../../index.html">stable</a></dd>
+              
+            
+
+          
+        
+          
+
+            
+              
+                <dd><a href="../../../v0.17.0/index.html">v0.17.0</a></dd>
               
             
 

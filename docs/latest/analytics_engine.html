@@ -499,7 +499,7 @@ how to implement your own algorithms in java.</p>
 <div class="section" id="run-a-demo-java-algorithm">
 <h3>Run a Demo Java Algorithm<a class="headerlink" href="#run-a-demo-java-algorithm" title="Permalink to this headline"></a></h3>
 <p>We provide some sample java app implementation, and you can directly run them on Graphscope Analytical Engine. First you
-need to download a <a class="reference external" href="https://github.com/GraphScope/gstest/blob/master/jars/graphscope-demo-0.1-shaded.jar">grape-demo.jar</a>。</p>
+need to download a <a class="reference external" href="https://github.com/GraphScope/gstest/blob/master/jars/grape-demo-0.17.0-shaded.jar">grape-demo.jar</a>。</p>
 <p>Then open your GraphScope python client, try to load a graph, and run the sample sssp algorithm.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphscope</span>
 <span class="kn">from</span> <span class="nn">graphscope</span> <span class="kn">import</span> <span class="n">JavaApp</span>
@@ -627,7 +627,7 @@ A simple bash script is provided to address this need. To verfy your algorithm, 
 To pass params to your contex, put them in <code class="docutils literal notranslate"><span class="pre">params</span></code> like <code class="docutils literal notranslate"><span class="pre">src=6,threadNum=1</span></code>, and these params will be provided in <code class="docutils literal notranslate"><span class="pre">Context::Init</span></code> as a json string. For example,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">GRAPHSCOPE_REPO</span><span class="si">}</span>/analytical_engine/java/
 python3 java-app-runner.py --app com.alibaba.graphscope.example.traverse.Traverse
-            --jar_path /home/graphscope/GraphScope/analytical_engine/java/grape-demo/target/grape-demo-0.16.0-shaded.jar
+            --jar_path /home/graphscope/GraphScope/analytical_engine/java/grape-demo/target/grape-demo-0.17.0-shaded.jar
             --arguments <span class="s2">&quot;maxIteration=10&quot;</span>
 </pre></div>
 </div>
@@ -811,6 +811,16 @@ and you need to specify the app you want in this run.</p>
             
               
                 <dd><a href="../index.html">stable</a></dd>
+              
+            
+
+          
+        
+          
+
+            
+              
+                <dd><a href="../v0.17.0/index.html">v0.17.0</a></dd>
               
             
 

@@ -477,6 +477,9 @@
         <span class="n">k8s_mars_worker_mem</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">mars_worker_mem</span><span class="p">,</span>
         <span class="n">k8s_mars_scheduler_cpu</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">mars_scheduler_cpu</span><span class="p">,</span>
         <span class="n">k8s_mars_scheduler_mem</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">mars_scheduler_mem</span><span class="p">,</span>
+        <span class="n">k8s_coordinator_pod_node_selector</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">k8s_coordinator_pod_node_selector</span><span class="p">,</span>
+        <span class="n">k8s_etcd_pod_node_selector</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">k8s_etcd_pod_node_selector</span><span class="p">,</span>
+        <span class="n">k8s_engine_pod_node_selector</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">k8s_engine_pod_node_selector</span><span class="p">,</span>
         <span class="n">k8s_volumes</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">k8s_volumes</span><span class="p">,</span>
         <span class="n">k8s_waiting_for_delete</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">k8s_waiting_for_delete</span><span class="p">,</span>
         <span class="n">timeout_seconds</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">timeout_seconds</span><span class="p">,</span>
@@ -484,6 +487,7 @@
         <span class="n">with_mars</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">with_mars</span><span class="p">,</span>
         <span class="n">mount_dataset</span><span class="o">=</span><span class="n">gs_config</span><span class="o">.</span><span class="n">mount_dataset</span><span class="p">,</span>
         <span class="n">reconnect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hosts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;localhost&quot;</span><span class="p">],</span>
         <span class="o">**</span><span class="n">kw</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct a new GraphScope session.</span>
@@ -571,6 +575,18 @@
 
 <span class="sd">            k8s_mars_scheduler_mem (str, optional):</span>
 <span class="sd">                Minimum number of memory request for mars scheduler container. Defaults to &#39;2Gi&#39;.</span>
+
+<span class="sd">            k8s_coordinator_pod_node_selector (dict, optional):</span>
+<span class="sd">                Node selector to the coordinator pod on k8s. Default is None.</span>
+<span class="sd">                See also: https://tinyurl.com/3nx6k7ph</span>
+
+<span class="sd">            k8s_etcd_pod_node_selector (dict, optional):</span>
+<span class="sd">                Node selector to the etcd pod on k8s. Default is None.</span>
+<span class="sd">                See also: https://tinyurl.com/3nx6k7ph</span>
+
+<span class="sd">            k8s_engine_pod_node_selector = None</span>
+<span class="sd">                Node selector to the engine pod on k8s. Default is None.</span>
+<span class="sd">                See also: https://tinyurl.com/3nx6k7ph</span>
 
 <span class="sd">            with_mars (bool, optional):</span>
 <span class="sd">                Launch graphscope with mars. Defaults to False.</span>
@@ -712,6 +728,9 @@
             <span class="s2">&quot;k8s_mars_worker_mem&quot;</span><span class="p">,</span>
             <span class="s2">&quot;k8s_mars_scheduler_cpu&quot;</span><span class="p">,</span>
             <span class="s2">&quot;k8s_mars_scheduler_mem&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;k8s_coordinator_pod_node_selector&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;k8s_etcd_pod_node_selector&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;k8s_engine_pod_node_selector&quot;</span><span class="p">,</span>
             <span class="s2">&quot;with_mars&quot;</span><span class="p">,</span>
             <span class="s2">&quot;reconnect&quot;</span><span class="p">,</span>
             <span class="s2">&quot;k8s_volumes&quot;</span><span class="p">,</span>
@@ -720,6 +739,7 @@
             <span class="s2">&quot;dangling_timeout_seconds&quot;</span><span class="p">,</span>
             <span class="s2">&quot;mount_dataset&quot;</span><span class="p">,</span>
             <span class="s2">&quot;k8s_dataset_image&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;hosts&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated_params</span> <span class="o">=</span> <span class="p">(</span>
             <span class="s2">&quot;show_log&quot;</span><span class="p">,</span>
@@ -834,6 +854,7 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_sending_thread</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_sending_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_maximum_failures</span> <span class="o">=</span> <span class="mi">3</span>
 
         <span class="c1"># networkx module</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_nx</span> <span class="o">=</span> <span class="kc">None</span></div>
@@ -915,14 +936,26 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config_params</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;eager&quot;</span>
 
     <span class="k">def</span> <span class="nf">_send_heartbeat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># &gt;1: failure, 0: reset when success</span>
+        <span class="n">heartbeat_failure_count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grpc_client</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_grpc_client</span><span class="o">.</span><span class="n">send_heartbeat</span><span class="p">()</span>
                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">heartbeat_failure_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
+                    <span class="n">heartbeat_failure_count</span> <span class="o">=</span> <span class="n">heartbeat_failure_count</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">heartbeat_failure_count</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_maximum_failures</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                            <span class="s2">&quot;The connection between coordinator has lost after </span><span class="si">%d</span><span class="s2"> times &quot;</span>
+                            <span class="s2">&quot;of heartbeat failure, closing the session ...&quot;</span><span class="p">,</span>
+                            <span class="n">heartbeat_failure_count</span><span class="p">,</span>
+                        <span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_disconnected</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">else</span><span class="p">:</span>
+                    <span class="n">heartbeat_failure_count</span> <span class="o">=</span> <span class="mi">0</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_disconnected</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_interval_seconds</span><span class="p">)</span>
 
@@ -947,7 +980,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_close</span><span class="p">()</span></div>
 
-    <span class="k">def</span> <span class="nf">_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># noqa: C901</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span> <span class="o">=</span> <span class="kc">True</span>
@@ -956,9 +989,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_deregister_default</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_sending_thread</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_sending_thread</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-                <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_interval_seconds</span>
-            <span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_sending_thread</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_interval_seconds</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>  <span class="c1"># ignore the &quot;cannot join current thread&quot; error</span>
+                <span class="k">pass</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_sending_thread</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_disconnected</span> <span class="o">=</span> <span class="kc">True</span>
@@ -1210,7 +1246,6 @@
             <span class="k">return</span> <span class="n">graphscope</span><span class="o">.</span><span class="n">load_from</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_run_on_local</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_config_params</span><span class="p">[</span><span class="s2">&quot;hosts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;localhost&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_params</span><span class="p">[</span><span class="s2">&quot;port&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_params</span><span class="p">[</span><span class="s2">&quot;vineyard_socket&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
@@ -1747,6 +1782,16 @@
             
               
                 <dd><a href="../../../../index.html">stable</a></dd>
+              
+            
+
+          
+        
+          
+
+            
+              
+                <dd><a href="../../../../v0.17.0/index.html">v0.17.0</a></dd>
               
             
 

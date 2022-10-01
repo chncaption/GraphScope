@@ -172,6 +172,8 @@
 <span class="sd">        &gt;&gt;&gt; c = graphscope.wcc(pg)</span>
 <span class="sd">        &gt;&gt;&gt; sess.close()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">graph</span><span class="o">.</span><span class="n">oid_type</span> <span class="o">==</span> <span class="s2">&quot;std::string&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Wcc algorithm cannot run on the graph with &#39;string&#39; type&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">AppAssets</span><span class="p">(</span><span class="n">algo</span><span class="o">=</span><span class="s2">&quot;wcc&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">&quot;vertex_data&quot;</span><span class="p">)(</span><span class="n">graph</span><span class="p">)</span></div>
 </pre></div>
 
@@ -227,6 +229,16 @@
             
               
                 <dd><a href="../../../../../index.html">stable</a></dd>
+              
+            
+
+          
+        
+          
+
+            
+              
+                <dd><a href="../../../../../v0.17.0/index.html">v0.17.0</a></dd>
               
             
 
