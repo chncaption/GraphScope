@@ -14,7 +14,7 @@
 
   <properties>
     <odps.sdk.public.version>0.36.4-public</odps.sdk.public.version>
-    <scala.version>2.12.10</scala.version>
+    <scala.version>2.13.11</scala.version>
     <scala.binary.version>2.12</scala.binary.version>
     <spark.version>3.1.1</spark.version>
     <maven.compiler.release>8</maven.compiler.release>
@@ -135,8 +135,7 @@
                 </filter>
               </filters>
               <transformers>
-                <transformer
-                  implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
               </transformers>
               <relocations>
                 <relocation>
