@@ -13,7 +13,7 @@
   <artifactId>data_load_tools</artifactId>
 
   <properties>
-    <odps.sdk.public.version>0.36.4-public</odps.sdk.public.version>
+    <odps.sdk.public.version>0.45.1-public</odps.sdk.public.version>
     <scala.version>2.12.10</scala.version>
     <scala.binary.version>2.12</scala.binary.version>
     <spark.version>3.1.1</spark.version>
@@ -135,8 +135,7 @@
                 </filter>
               </filters>
               <transformers>
-                <transformer
-                  implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
               </transformers>
               <relocations>
                 <relocation>
