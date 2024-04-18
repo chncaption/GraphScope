@@ -59,7 +59,7 @@
     <dep.kryo.version>4.0.0</dep.kryo.version>
     <dep.json.version>20160810</dep.json.version>
     <dep.kryo-serializers.version>0.42</dep.kryo-serializers.version>
-    <spark.version>3.1.3</spark.version>
+    <spark.version>3.4.3</spark.version>
   </properties>
   <dependencyManagement>
     <dependencies>
