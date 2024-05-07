@@ -55,7 +55,7 @@
     <slf4j.version>1.7.30</slf4j.version>
     <log4j.version>2.19.0</log4j.version>
     <dep.netty.version>4.1.44.Final</dep.netty.version>
-    <dep.fastutil.version>6.5.4</dep.fastutil.version>
+    <dep.fastutil.version>6.6.5</dep.fastutil.version>
     <dep.kryo.version>4.0.0</dep.kryo.version>
     <dep.json.version>20160810</dep.json.version>
     <dep.kryo-serializers.version>0.42</dep.kryo-serializers.version>
