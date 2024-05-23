@@ -14,3 +14,4 @@ sphinx_rtd_theme
 tomli
 docutils==0.16
 wheel
+requests>=2.32.0 # not directly required, pinned by Snyk to avoid a vulnerability
