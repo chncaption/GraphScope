@@ -75,7 +75,7 @@
     <slf4j.version>1.7.21</slf4j.version>
     <groovy.version>2.5.14</groovy.version>
     <curator.new.version>5.1.0</curator.new.version>
-    <curator.version>2.12.0</curator.version>
+    <curator.version>5.7.0</curator.version>
     <jackson.version>2.13.2</jackson.version>
     <jackson.databind.version>2.13.2.1</jackson.databind.version>
     <maven.surefire.version>2.22.2</maven.surefire.version>
