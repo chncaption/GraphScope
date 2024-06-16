@@ -13,7 +13,7 @@
   <artifactId>groot-server</artifactId>
 
   <properties>
-    <curator.new.version>5.1.0</curator.new.version>
+    <curator.new.version>5.7.0</curator.new.version>
   </properties>
 
   <dependencies>
