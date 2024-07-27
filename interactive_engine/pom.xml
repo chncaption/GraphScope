@@ -77,14 +77,14 @@
     <curator.new.version>5.1.0</curator.new.version>
     <curator.version>2.12.0</curator.version>
     <jackson.version>2.13.2</jackson.version>
-    <jackson.databind.version>2.13.2.1</jackson.databind.version>
+    <jackson.databind.version>2.15.0</jackson.databind.version>
     <maven.surefire.version>2.22.2</maven.surefire.version>
     <os.maven.plugin.version>1.6.2</os.maven.plugin.version>
     <protoc.version>3.18.0</protoc.version>
     <protobuf.version>3.18.2</protobuf.version>
     <logback.version>1.2.3</logback.version>
     <zookeeper.version>3.6.3</zookeeper.version>
-    <kafka.version>2.5.0</kafka.version>
+    <kafka.version>3.7.0</kafka.version>
     <kafka.junit.version>3.2.1</kafka.junit.version>
     <jna.version>5.5.0</jna.version>
     <junit.jupiter.version>5.6.3</junit.jupiter.version>
