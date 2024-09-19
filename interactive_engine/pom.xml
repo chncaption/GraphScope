@@ -511,7 +511,7 @@
       <dependency>
         <groupId>de.javakaffee</groupId>
         <artifactId>kryo-serializers</artifactId>
-        <version>0.38</version>
+        <version>0.39</version>
         <exclusions>
           <exclusion>
             <groupId>com.esotericsoftware</groupId>
